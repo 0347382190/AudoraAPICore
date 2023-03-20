@@ -1,6 +1,8 @@
-﻿using System.Data;
-using System.Runtime.InteropServices;
-
+﻿/*
+ *Name:VeEntity.cs
+ *03/20/2023: Nguyễn Thị Thu Hoài
+ *DESC: Create
+ */
 namespace AudoraAPICore.Models
 {
     public class VeEntity
