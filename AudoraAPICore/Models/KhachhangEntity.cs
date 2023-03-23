@@ -1,4 +1,9 @@
-﻿using System;
+﻿/*
+ *Name:KhachhangEntity.cs
+ *03/23/2023: Nguyễn Hồng Ngọc
+ *DESC: Create
+ */
+using System;
 
 namespace AudoraAPICore.Models
 {
