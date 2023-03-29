@@ -102,12 +102,12 @@ namespace AudoraAPICore.DAL
                 }
             }
         }
-        public bool deleteKhachhang(PhimEntity phimEntity)
+        public bool Xoaphim(PhimEntity phimEntity)
         {
             using (SqlConnection cnn = new SqlConnection(GetconnectString()))
             {
                 cnn.Open();
-                using (SqlCommand cmd = new SqlCommand("spPhim", cnn))
+                using (SqlCommand cmd = new SqlCommand("spPhim_Delete", cnn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@PK_iPhimID", phimEntity.PK_iPhimID);

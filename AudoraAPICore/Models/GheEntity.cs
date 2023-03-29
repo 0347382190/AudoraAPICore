@@ -15,9 +15,9 @@ namespace AudoraAPICore.Models
         private bool m_isTrangthai;
 
         public long PK_iGheID { get => m_PK_iGheID; set => m_PK_iGheID = value; }
-        public string SDay { get => m_sDay; set => m_sDay = value; }
-        public int ICot { get => m_iCot; set => m_iCot = value; }
+        public string sDay { get => m_sDay; set => m_sDay = value; }
+        public int iCot { get => m_iCot; set => m_iCot = value; }
         public long FK_iPhongchieuID { get => m_FK_iPhongchieuID; set => m_FK_iPhongchieuID = value; }
-        public bool IsTrangthai { get => m_isTrangthai; set => m_isTrangthai = value; }
+        public bool isTrangthai { get => m_isTrangthai; set => m_isTrangthai = value; }
     }
 }
