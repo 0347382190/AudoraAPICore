@@ -20,6 +20,6 @@ namespace AudoraAPICore.Models
         public long FK_iPhongchieuID { get => m_FK_iPhongchieuID; set => m_FK_iPhongchieuID = value; }
         public long FK_iVeID { get => m_FK_iVeID; set => m_FK_iVeID = value; }
         public long FK_iPhim { get => m_FK_iPhim; set => m_FK_iPhim = value; }
-        public DateTime TGiobatdau { get => m_tGiobatdau; set => m_tGiobatdau = value; }
+        public DateTime tGiobatdau { get => m_tGiobatdau; set => m_tGiobatdau = value; }
     }
 }
