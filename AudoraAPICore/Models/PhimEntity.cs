@@ -3,6 +3,8 @@
  *03/20/2023: Nguyễn Thị Thu Hoài
  *DESC: Create
  */
+using System;
+
 namespace AudoraAPICore.Models
 {
     public class PhimEntity
@@ -10,7 +12,7 @@ namespace AudoraAPICore.Models
         private int m_PK_iPhimID;
         private string m_sTenphim;
         private string m_sThoiluong;
-        private string m_dNgaykhoichieu;
+        private DateTime m_dNgaykhoichieu;
         private string m_sDaodien;
         private string m_sDienvien;
         private string m_sMota;
@@ -20,7 +22,7 @@ namespace AudoraAPICore.Models
         public int PK_iPhimID { get => m_PK_iPhimID; set => m_PK_iPhimID = value; }
         public string sTenphim { get => m_sTenphim; set => m_sTenphim = value; }
         public string sThoiluong { get => m_sThoiluong; set => m_sThoiluong = value; }
-        public string dNgaykhoichieu { get => m_dNgaykhoichieu; set => m_dNgaykhoichieu = value; }
+        public DateTime dNgaykhoichieu { get => m_dNgaykhoichieu; set => m_dNgaykhoichieu = value; }
         public string sDaodien { get => m_sDaodien; set => m_sDaodien = value; }
         public string sDienvien { get => m_sDienvien; set => m_sDienvien = value; }
         public string sMota { get => m_sMota; set => m_sMota = value; }
