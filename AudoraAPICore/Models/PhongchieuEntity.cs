@@ -2,6 +2,8 @@
  *Name:PhongchieuEntity.cs
  *03/20/2023: Nguyễn Thị Thu Hoài
  *DESC: Create
+ *29/03: Nguyễn Hồng Ngọc
+ *DESC: Update sDay -> iCot
  */
 namespace AudoraAPICore.Models
 {
@@ -15,7 +17,7 @@ namespace AudoraAPICore.Models
 
         public int PK_iPhongchieuID { get => m_PK_iPhongchieuID; set => m_PK_iPhongchieuID = value; }
         public string sDay { get => m_sDay; set => m_sDay = value; }
-        public int sCot { get => m_iCot; set => m_iCot = value; }
+        public int iCot { get => m_iCot; set => m_iCot = value; }
         public int iSoluong { get => m_iSoluong; set => m_iSoluong = value; }
         public bool isTrangthai { get => m_isTrangthai; set => m_isTrangthai = value; }
     }
