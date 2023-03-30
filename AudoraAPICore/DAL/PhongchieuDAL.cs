@@ -119,7 +119,7 @@ namespace AudoraAPICore.DAL
                 }
             }
         }
-        public bool Xoaphongchieu(PhongchieuEntity phongchieuEntity)
+        public bool Xoaphongchieu(long PK_iPhongchieuID)
         {
             using (SqlConnection cnn = new SqlConnection(GetconnectString()))
             {
@@ -127,7 +127,7 @@ namespace AudoraAPICore.DAL
                 using (SqlCommand cmd = new SqlCommand("spPhongchieu_Delete", cnn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@PK_iPhongchieuID", phongchieuEntity.PK_iPhongchieuID);
+                    cmd.Parameters.AddWithValue("@PK_iPhongchieuID", PK_iPhongchieuID);
                     long i = cmd.ExecuteNonQuery();
                     cnn.Close();
                     if (i > 0)

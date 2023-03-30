@@ -7,7 +7,7 @@ using System;
 
 namespace AudoraAPICore.Models
 {
-    public class HoadonEnity
+    public class HoadonEntity
     {
         private long m_iHoadonID;
         private DateTime m_dNgaylap;

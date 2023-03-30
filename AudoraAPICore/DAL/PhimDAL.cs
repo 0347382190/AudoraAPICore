@@ -102,7 +102,7 @@ namespace AudoraAPICore.DAL
                 }
             }
         }
-        public bool Xoaphim(PhimEntity phimEntity)
+        public bool Xoaphim(long PK_iPhimID)
         {
             using (SqlConnection cnn = new SqlConnection(GetconnectString()))
             {
@@ -110,7 +110,7 @@ namespace AudoraAPICore.DAL
                 using (SqlCommand cmd = new SqlCommand("spPhim_Delete", cnn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@PK_iPhimID", phimEntity.PK_iPhimID);
+                    cmd.Parameters.AddWithValue("@PK_iPhimID", PK_iPhimID);
                     long i = cmd.ExecuteNonQuery();
                     cnn.Close();
                     if (i > 0)

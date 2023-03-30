@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Web.Http;
+//using System.Web.Http;
 using AudoraAPICore.DAL;
 using AudoraAPICore.Models;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -18,26 +19,29 @@ namespace AudoraAPICore.API
     {
         // GET: api/<PhimAPI>
         [HttpGet]
-        public string GetAll()
+        public List<PhimEntity> GetAll()
         {
             List<PhimEntity> lstPhim = new List<PhimEntity>();
             PhimDAL phimDAL = new PhimDAL();
-            lstPhim = phimDAL.Hienthidanhsachphim();            
+            lstPhim = phimDAL.Hienthidanhsachphim();
+
             return lstPhim;
         }
-        public string GetPhimCommingsoon()
+        public List<PhimEntity> GetPhimCommingsoon()
         {
             List<PhimEntity> lstPhim = new List<PhimEntity>();
             PhimDAL phimDAL = new PhimDAL();
             lstPhim = phimDAL.Hienthiphimsapchieu();
+            //return "";
             return lstPhim;
 
         }
         // GET api/<PhimAPI>/5
         [HttpGet("{id}")]
-        public string GetPhimbyID(long PK_iPhimID)
+        public List<PhimEntity> GetPhimbyID(long PK_iPhimID)
         {
             PhimDAL phimDAL = new PhimDAL();
+            //return "";
             return phimDAL.TimkiemphimtheoID(PK_iPhimID);
         }
         // POST api/<PhimAPI>
@@ -58,10 +62,10 @@ namespace AudoraAPICore.API
 
         // DELETE api/<PhimAPI>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Delete(long PK_iPhimID)
         {
-            UserDAL userDAL = new UserDAL();
-            userDAL.DeleteUser(id);
+             PhimDAL phimDAL = new PhimDAL();
+            phimDAL.Xoaphim(PK_iPhimID);
         }
     }
 }

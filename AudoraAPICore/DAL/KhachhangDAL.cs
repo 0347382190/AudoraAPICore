@@ -36,7 +36,7 @@ namespace AudoraAPICore.DAL
                         {
                             KhachhangEntity khachhangEntity = new KhachhangEntity();
                             khachhangEntity.PK_sSodienthoai = rd["PK_sSodienthoai"].ToString();
-                            khachhangEntity.sHoten = rd["sTen"].ToString();
+                            khachhangEntity.sHoten = rd["sHoten"].ToString();
                             khachhangEntity.dNgaysinh = Convert.ToDateTime(rd["dNgaysinh"]);                            
                             khachhangEntity.bGioitinh = Convert.ToBoolean(rd["bGioitinh"]);                            
                             khachhangEntity.sDiachi = rd["sDiachi"].ToString();
