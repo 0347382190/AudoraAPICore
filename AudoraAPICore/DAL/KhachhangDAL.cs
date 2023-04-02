@@ -49,7 +49,7 @@ namespace AudoraAPICore.DAL
             }
             return glstKhachhang;
         }
-        public List<KhachhangEntity> Timkiemkhachhang(long PK_sSodienthoai)
+        public List<KhachhangEntity> Timkiemkhachhang(string PK_sSodienthoai)
         {
             List<KhachhangEntity> glstKhachhang = new List<KhachhangEntity>();
             using (SqlConnection cnn = new SqlConnection(GetconnectString()))

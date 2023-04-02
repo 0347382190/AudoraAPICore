@@ -51,7 +51,7 @@ namespace AudoraAPICore.DAL
             }
             return glstNhanvien;
         }
-        public List<NhanvienEntity> Timkiemnhanvien(long PK_sCCCD)
+        public List<NhanvienEntity> Timkiemnhanvien(string PK_sCCCD)
         {
             List<NhanvienEntity> glstNhanvien = new List<NhanvienEntity>();
             using (SqlConnection cnn = new SqlConnection(GetconnectString()))
