@@ -12,6 +12,7 @@ namespace AudoraAPICore.API
     {
         // GET: api/<TaikhoanAPI>
         [HttpGet("{sEmail}/{sMatkhau}")]
+        [RequireHttps]
         public bool login(string sEmail, string sMatkhau)
         {
             TaikhoanDAL taikhoanDAL = new TaikhoanDAL();

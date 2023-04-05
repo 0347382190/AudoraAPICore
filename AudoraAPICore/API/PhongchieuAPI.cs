@@ -6,7 +6,6 @@ using System.Net.Http;
 //using System.Web.Http;
 using AudoraAPICore.DAL;
 using AudoraAPICore.Models;
-using Newtonsoft.Json;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860

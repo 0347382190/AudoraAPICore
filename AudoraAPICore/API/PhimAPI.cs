@@ -6,7 +6,6 @@ using System.Net.Http;
 //using System.Web.Http;
 using AudoraAPICore.DAL;
 using AudoraAPICore.Models;
-using Newtonsoft.Json;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -18,6 +17,7 @@ namespace AudoraAPICore.API
     public class PhimAPI : ControllerBase
     {
         // GET: api/<PhimAPI>
+        [RequireHttps]
         [HttpGet]
         public List<PhimEntity> GetAll()
         {
@@ -32,9 +32,7 @@ namespace AudoraAPICore.API
             List<PhimEntity> lstPhim = new List<PhimEntity>();
             PhimDAL phimDAL = new PhimDAL();
             lstPhim = phimDAL.Hienthiphimsapchieu();
-            //return "";
             return lstPhim;
-
         }
         // GET api/<PhimAPI>/5
         [HttpGet("{id}")]

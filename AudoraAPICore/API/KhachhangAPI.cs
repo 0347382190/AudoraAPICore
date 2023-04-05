@@ -6,7 +6,6 @@ using System.Net.Http;
 //using System.Web.Http;
 using AudoraAPICore.DAL;
 using AudoraAPICore.Models;
-using Newtonsoft.Json;
 using Microsoft.AspNetCore.Mvc;
 
 
