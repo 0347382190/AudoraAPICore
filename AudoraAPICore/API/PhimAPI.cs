@@ -18,7 +18,7 @@ namespace AudoraAPICore.API
     {
         // GET: api/<PhimAPI>
         [RequireHttps]
-        [HttpGet]
+        [HttpGet("GetAll")]
         public List<PhimEntity> GetAll()
         {
             List<PhimEntity> lstPhim = new List<PhimEntity>();
@@ -27,6 +27,7 @@ namespace AudoraAPICore.API
 
             return lstPhim;
         }
+        [HttpGet("GetPhimCommingsoon")]
         public List<PhimEntity> GetPhimCommingsoon()
         {
             List<PhimEntity> lstPhim = new List<PhimEntity>();
