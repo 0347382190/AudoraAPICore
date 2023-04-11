@@ -37,11 +37,11 @@ namespace AudoraAPICore.API
         }
         // GET api/<PhimAPI>/5
         [HttpGet("{id}")]
-        public List<PhimEntity> GetPhimbyID(long PK_iPhimID)
+        public PhimEntity GetPhimbyID(long PK_iPhimID)
         {
             PhimDAL phimDAL = new PhimDAL();
             //return "";
-            return phimDAL.TimkiemphimtheoID(PK_iPhimID);
+            return phimDAL.TimkiemphimtheoID(PK_iPhimID).FirstOrDefault();
         }
         // POST api/<PhimAPI>
         [HttpPost]

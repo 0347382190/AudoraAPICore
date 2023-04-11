@@ -64,7 +64,7 @@ namespace AudoraAPICore.DAL
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@sTenphim", phimEntity.sTenphim);
                     cmd.Parameters.AddWithValue("@sThoiluong", phimEntity.sThoiluong);
-                    cmd.Parameters.AddWithValue("@dNgaykhoichieu", phimEntity.dNgaykhoichieu);
+                    cmd.Parameters.AddWithValue("@dNgaykhoichieu",phimEntity.dNgaykhoichieu);
                     cmd.Parameters.AddWithValue("@sDaodien", phimEntity.sDaodien);
                     cmd.Parameters.AddWithValue("@sDienvien", phimEntity.sDienvien);
                     cmd.Parameters.AddWithValue("@sMota", phimEntity.sMota);
@@ -159,7 +159,7 @@ namespace AudoraAPICore.DAL
             {
                 List<PhimEntity> glstPhim = new List<PhimEntity>();
                 cnn.Open();
-                using (SqlCommand cmd = new SqlCommand("spPhim_GetAll", cnn))
+                using (SqlCommand cmd = new SqlCommand("spPhim_GetbyPK", cnn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@PK_iPhimID", PK_iPhimID);
