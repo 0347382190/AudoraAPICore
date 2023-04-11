@@ -127,7 +127,7 @@ namespace AudoraAPICore.DAL
             {
                 List<PhimEntity> glstPhim = new List<PhimEntity>();
                 cnn.Open();
-                using (SqlCommand cmd = new SqlCommand("spPhim_GetAll", cnn))
+                using (SqlCommand cmd = new SqlCommand("spPhim_GetFilmcomingsoon", cnn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     SqlDataReader rd = cmd.ExecuteReader();
