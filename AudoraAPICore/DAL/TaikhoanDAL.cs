@@ -1,10 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
-using System.Collections.Generic;
 using System;
 using System.Data.SqlClient;
 using System.IO;
-using AudoraAPICore.Models;
-using System.Data;
 
 namespace AudoraAPICore.DAL
 {
@@ -21,8 +18,9 @@ namespace AudoraAPICore.DAL
             string chuoiketnoi = configuation.GetSection("ConnectionStrings").GetSection("db_Audora").Value;
             return chuoiketnoi;
         }
-        public bool LoginTaikhoan(string sEMail, string sMatkhau)
+        public string LoginTaikhoan(string sEMail, string sMatkhau)
         {
+            String sSDT="";
             using (SqlConnection cnn = new SqlConnection(GetconnectString()))
             {
                 cnn.Open();
@@ -31,8 +29,17 @@ namespace AudoraAPICore.DAL
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@sEmail", sEMail);
                     cmd.Parameters.AddWithValue("@sMatkhau", sMatkhau);
-                    SqlDataReader dt = cmd.ExecuteReader();
-                    return dt.HasRows;
+                    SqlDataReader rd = cmd.ExecuteReader();
+                    if (rd.HasRows)
+                    {
+                        while (rd.Read())
+                        {
+                            sSDT = rd["FK_sSoDienThoai"].ToString();
+                            //glstPhim.Add(phimEntity);
+                        }
+                      
+                    }
+                    return sSDT;
                 }
             }
 

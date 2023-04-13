@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AudoraAPICore.DAL;
+using AudoraAPICore.Models;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,19 +12,25 @@ namespace AudoraAPICore.API
     [ApiController]
     public class GheAPI : ControllerBase
     {
-        // GET: api/<GheAPI>
-        //[HttpGet]
-        //public IEnumerable<string> Get()
-        //{
-        //    return new string[] { "value1", "value2" };
-        //}
-
         // GET api/<GheAPI>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("{igiochieu}/{dNgaychieu}/{phongchieuID}")]
+        public IEnumerable<GheEntity> Get(int giochieu, DateTime ngaychieu, int FK_iPhongchieuID)
         {
-            return "value";
+            IEnumerable<GheEntity> lstGhe;
+            GheDAL GheDAL = new GheDAL();
+            lstGhe = GheDAL.Hienthidanhsachghetheongaygio(giochieu, ngaychieu, FK_iPhongchieuID);
+            return lstGhe;
         }
+        [HttpGet("bookSticker")]
+        public List<VeEntity> bookSticker(int PK_Ghe, string sSoDienThoai, int PK_iPhongchieuID)
+        {
+
+            List<VeEntity> lstHoadon;
+            GheDAL GheDAL = new GheDAL();
+            lstHoadon = GheDAL.DatVe(PK_Ghe, sSoDienThoai, PK_iPhongchieuID);
+            return lstHoadon;
+        }
+
 
         // POST api/<GheAPI>
         [HttpPost]

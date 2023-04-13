@@ -37,7 +37,7 @@ namespace AudoraAPICore.API
         }
         // GET api/<PhimAPI>/5
         [HttpGet("{id}")]
-        public List<PhimEntity> GetPhimbyID(long PK_iPhimID)
+        public PhimEntity GetPhimbyID(long PK_iPhimID)
         {
             PhimDAL phimDAL = new PhimDAL();
             //return "";

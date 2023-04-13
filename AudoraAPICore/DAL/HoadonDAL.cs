@@ -36,7 +36,7 @@ namespace AudoraAPICore.DAL
                         while (rd.Read())
                         {
                             HoadonEntity hoadonEntity = new HoadonEntity();
-                            hoadonEntity.PK_iHoadonID = Convert.ToInt32(rd["PK_iHoadonID"]);
+                            hoadonEntity.PK_iHoadonID = Convert.ToString(rd["PK_iHoadonID"]);
                             hoadonEntity.dNgaylap = Convert.ToDateTime(rd["dNgaylap"]);
                             hoadonEntity.FK_sSodienthoai = rd["sSodienthoai"].ToString();
                             hoadonEntity.FK_sCCCD = rd["sCCCD"].ToString();
@@ -64,7 +64,7 @@ namespace AudoraAPICore.DAL
                         while (rd.Read())
                         {
                             HoadonEntity hoadonEntity = new HoadonEntity();
-                            hoadonEntity.PK_iHoadonID = Convert.ToInt32(rd["PK_iHoadonID"]);
+                            hoadonEntity.PK_iHoadonID = Convert.ToString(rd["PK_iHoadonID"]);
                             hoadonEntity.dNgaylap = Convert.ToDateTime(rd["dNgaylap"]);
                             hoadonEntity.FK_sSodienthoai = rd["FK_sSodienthoai"].ToString();
                             hoadonEntity.FK_sCCCD = rd["FK_sCCCD"].ToString();
