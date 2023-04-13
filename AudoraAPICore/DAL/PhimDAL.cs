@@ -153,11 +153,12 @@ namespace AudoraAPICore.DAL
                 return glstPhim;
             }
         }
-        public List<PhimEntity> TimkiemphimtheoID(long PK_iPhimID)
+        public PhimEntity TimkiemphimtheoID(long PK_iPhimID)
         {
             using (SqlConnection cnn = new SqlConnection(GetconnectString()))
             {
-                List<PhimEntity> glstPhim = new List<PhimEntity>();
+                PhimEntity phimEntity = new PhimEntity();
+                //List<PhimEntity> glstPhim = new List<PhimEntity>();
                 cnn.Open();
                 using (SqlCommand cmd = new SqlCommand("spPhim_GetbyPK", cnn))
                 {
@@ -168,7 +169,6 @@ namespace AudoraAPICore.DAL
                     {
                         while (rd.Read())
                         {
-                            PhimEntity phimEntity = new PhimEntity();
                             phimEntity.PK_iPhimID = Convert.ToInt32(rd["PK_iPhimID"]);
                             phimEntity.sTenphim = rd["sTenphim"].ToString();
                             phimEntity.sThoiluong = rd["sThoiluong"].ToString();
@@ -178,12 +178,12 @@ namespace AudoraAPICore.DAL
                             phimEntity.sMota = rd["sMota"].ToString();
                             phimEntity.sNgonngu = rd["sNgonngu"].ToString();
                             phimEntity.sAnh = rd["sAnh"].ToString();
-                            glstPhim.Add(phimEntity);
+                            //glstPhim.Add(phimEntity);
                         }
                     }
                 }
                 cnn.Close();
-                return glstPhim;
+                return phimEntity;
             }
         }
     }
