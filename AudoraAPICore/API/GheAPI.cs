@@ -22,15 +22,20 @@ namespace AudoraAPICore.API
             return lstGhe;
         }
         [HttpGet("bookSticker")]
-        public List<VeEntity> bookSticker(int PK_Ghe, string sSoDienThoai, int PK_iPhongchieuID)
+        public List<HoadonEntity> bookSticker(/*int FK_iPhimID,*/int PK_Ghe, string sSoDienThoai, int PK_iPhongchieuID)
         {
 
-            List<VeEntity> lstHoadon;
+            List<HoadonEntity> lstHoadon;
             GheDAL GheDAL = new GheDAL();
-            lstHoadon = GheDAL.DatVe(PK_Ghe, sSoDienThoai, PK_iPhongchieuID);
+            lstHoadon = GheDAL.DatVe(/*FK_iPhimID,*/PK_Ghe, sSoDienThoai, PK_iPhongchieuID);
             return lstHoadon;
         }
-
+        [HttpGet("Payments")]
+        public bool Payments(string sSoDienThoai)
+        {
+            GheDAL GheDAL = new GheDAL();
+            return GheDAL.Thanhtoan( sSoDienThoai);
+        }
 
         // POST api/<GheAPI>
         [HttpPost]

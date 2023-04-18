@@ -17,7 +17,7 @@ namespace AudoraAPICore.API
     public class PhimAPI : ControllerBase
     {
         // GET: api/<PhimAPI>
-        [RequireHttps]
+      //  [RequireHttps]
         [HttpGet("GetAll")]
         public List<PhimEntity> GetAll()
         {
