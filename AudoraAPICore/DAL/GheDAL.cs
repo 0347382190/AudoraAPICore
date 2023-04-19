@@ -21,7 +21,7 @@ namespace AudoraAPICore.DAL
             string chuoiketnoi = configuation.GetSection("ConnectionStrings").GetSection("db_Audora").Value;
             return chuoiketnoi;
         }
-        public List<GheEntity> Hienthidanhsachghetheongaygio(int giochieu,DateTime ngaychieu,int FK_iPhongchieuID)
+        public List<GheEntity> Hienthidanhsachghetheongaygio(int giochieu, DateTime ngaychieu, int FK_iPhongchieuID)
         {
             using (SqlConnection cnn = new SqlConnection(GetconnectString()))
             {
@@ -40,7 +40,7 @@ namespace AudoraAPICore.DAL
                         {
                             GheEntity GheEntity = new GheEntity();
                             GheEntity.PK_iGheID = Convert.ToInt32(rd["PK_iGheID"]);
-                            GheEntity.iDay = Convert.ToInt32( rd["iDay"]);
+                            GheEntity.iDay = Convert.ToInt32(rd["iDay"]);
                             GheEntity.iCot = Convert.ToInt32(rd["iCot"]);
                             GheEntity.FK_iPhongchieuID = Convert.ToInt32(rd["FK_iPhongchieuID"]);
                             GheEntity.isTrangthai = Convert.ToBoolean(rd["isTrangthai"]);
@@ -52,9 +52,9 @@ namespace AudoraAPICore.DAL
                 return glstPhim;
             }
         }
-        public List<VeEntity> DatVe (int PK_Ghe, string sSoDienThoai, int PK_iPhongchieuID)
+        public List<HoadonEntity> DatVe( /*int FK_iPhimID,*/ int PK_Ghe, string sSoDienThoai, int PK_iPhongchieuID)
         {
-            List<VeEntity> lst_Ve= new List<VeEntity>();
+            List<HoadonEntity> lst_Ve = new List<HoadonEntity>();
             using (SqlConnection cnn = new SqlConnection(GetconnectString()))
             {
                 cnn.Open();
@@ -63,24 +63,44 @@ namespace AudoraAPICore.DAL
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@PK_Ghe", PK_Ghe);
                     cmd.Parameters.AddWithValue("@sSoDienThoai", sSoDienThoai);
-                    cmd.Parameters.AddWithValue("@PK_iPhongchieu", PK_iPhongchieuID);
+                    cmd.Parameters.AddWithValue("@PK_iLichchieu", PK_iPhongchieuID);
                     SqlDataReader rd = cmd.ExecuteReader();
                     if (rd.HasRows)
                     {
                         while (rd.Read())
                         {
-                            VeEntity veEntity = new VeEntity();
-                            veEntity.FK_HoadonID = Convert.ToString(rd["PK_HoadonID"]);
-                            veEntity.FK_iPhongchieuID = Convert.ToInt32( rd["FK_iPhongchieuID"]);
-                            veEntity.FK_iGheID = Convert.ToInt32( rd["FK_iGheID"]);
-                            veEntity.PK_iVeID = Convert.ToInt32(rd["PK_iVeID"]);
-                            lst_Ve.Add(veEntity);
+                            HoadonEntity hoadonEntity = new HoadonEntity();
+                            hoadonEntity.FK_iPhongchieuID = Convert.ToInt32(rd["FK_iPhongchieuID"]);
+                            hoadonEntity.sThoiluong = Convert.ToString(rd["sThoiluong"]);
+                            hoadonEntity.sTenphim = Convert.ToString(rd["sTenphim"]);
+                            hoadonEntity.tNgaybatdau = Convert.ToDateTime(rd["tNgaybatdau"]);
+                            hoadonEntity.hGiochieu = Convert.ToString(rd["hGiochieu"]);
+                            hoadonEntity.FK_iGheID = Convert.ToInt32(rd["FK_iGheID"]);
+                            lst_Ve.Add(hoadonEntity);
                         }
                     }
                 }
                 cnn.Close();
                 return lst_Ve;
             }
+        }
+        public bool Thanhtoan(string sSoDienThoai)
+        {
+            using (SqlConnection cnn = new SqlConnection(GetconnectString()))
+            {
+                cnn.Open();
+                using (SqlCommand cmd = new SqlCommand("sptblHoadon_Payment_Ghe", cnn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@FK_sSoDienThoai", sSoDienThoai);
+                    var rd = cmd.ExecuteNonQuery();
+                    if (rd>0)
+                    {
+                       return true;
+                    }
+                }
+            }
+            return false ;
         }
     }
 }
