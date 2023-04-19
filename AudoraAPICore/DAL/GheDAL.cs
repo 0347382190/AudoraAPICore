@@ -83,7 +83,7 @@ namespace AudoraAPICore.DAL
                 return glstPhim;
             }
         }
-        public bool DatVe( int PK_Ghe, string sSoDienThoai, int PK_iPhongchieuID)
+        public bool DatVe( int PK_Ghe, string sSoDienThoai, int PK_iPhongchieuID,string sTenghe)
         {
             //List<HoadonEntity> lst_Ve = new List<HoadonEntity>();
             using (SqlConnection cnn = new SqlConnection(GetconnectString()))
@@ -95,6 +95,7 @@ namespace AudoraAPICore.DAL
                     cmd.Parameters.AddWithValue("@PK_Ghe", PK_Ghe);
                     cmd.Parameters.AddWithValue("@sSoDienThoai", sSoDienThoai);
                     cmd.Parameters.AddWithValue("@PK_iLichchieu", PK_iPhongchieuID);
+                    cmd.Parameters.AddWithValue("@sTenghe", sTenghe);
                     var rd = cmd.ExecuteNonQuery();
                     if(rd>0)
                     {
@@ -141,6 +142,7 @@ namespace AudoraAPICore.DAL
                             hoadonEntity.tNgaybatdau = Convert.ToDateTime(rd["tNgaybatdau"]);
                             hoadonEntity.hGiochieu = Convert.ToString(rd["hGiochieu"]);
                             hoadonEntity.FK_iGheID = Convert.ToInt32(rd["FK_iGheID"]);
+                            hoadonEntity.sTenghe=Convert.ToString(rd["sTenghe"]);
                             lst_Ve.Add(hoadonEntity);
                         }
                     }

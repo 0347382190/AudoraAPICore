@@ -30,10 +30,10 @@ namespace AudoraAPICore.API
             return lstGhe;
         }
         [HttpGet("bookSticker")]
-        public bool bookSticker(/*int FK_iPhimID,*/int PK_Ghe, string sSoDienThoai, int PK_iPhongchieuID)
+        public bool bookSticker(int PK_Ghe, string sSoDienThoai, int PK_iPhongchieuID,string sTenghe)
         {
             GheDAL GheDAL = new GheDAL();
-            return GheDAL.DatVe(/*FK_iPhimID,*/PK_Ghe, sSoDienThoai, PK_iPhongchieuID);
+            return GheDAL.DatVe(PK_Ghe, sSoDienThoai, PK_iPhongchieuID,sTenghe);
         }
         [HttpGet("GetAllHD")]
         public List<HoadonEntity> GetAllHD( string sSoDienThoai)
