@@ -30,6 +30,15 @@ namespace AudoraAPICore.API
             lstHoadon = GheDAL.DatVe(/*FK_iPhimID,*/PK_Ghe, sSoDienThoai, PK_iPhongchieuID);
             return lstHoadon;
         }
+        [HttpGet("GetAllHD")]
+        public List<HoadonEntity> GetAllHD( string sSoDienThoai)
+        {
+            List<HoadonEntity> lstHoadon;
+            GheDAL GheDAL = new GheDAL();
+            lstHoadon = GheDAL.getAllHoadon( sSoDienThoai);
+            return lstHoadon;
+        }
+
         [HttpGet("Payments")]
         public bool Payments(string sSoDienThoai)
         {

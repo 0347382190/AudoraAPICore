@@ -44,6 +44,7 @@ namespace AudoraAPICore.DAL
                             GheEntity.iCot = Convert.ToInt32(rd["iCot"]);
                             GheEntity.FK_iPhongchieuID = Convert.ToInt32(rd["FK_iPhongchieuID"]);
                             GheEntity.isTrangthai = Convert.ToBoolean(rd["isTrangthai"]);
+                            GheEntity.bCho = Convert.ToBoolean(rd["bCho"]);
                             glstPhim.Add(GheEntity);
                         }
                     }
@@ -52,7 +53,7 @@ namespace AudoraAPICore.DAL
                 return glstPhim;
             }
         }
-        public List<HoadonEntity> DatVe( /*int FK_iPhimID,*/ int PK_Ghe, string sSoDienThoai, int PK_iPhongchieuID)
+        public List<HoadonEntity> DatVe( int PK_Ghe, string sSoDienThoai, int PK_iPhongchieuID)
         {
             List<HoadonEntity> lst_Ve = new List<HoadonEntity>();
             using (SqlConnection cnn = new SqlConnection(GetconnectString()))
@@ -64,6 +65,36 @@ namespace AudoraAPICore.DAL
                     cmd.Parameters.AddWithValue("@PK_Ghe", PK_Ghe);
                     cmd.Parameters.AddWithValue("@sSoDienThoai", sSoDienThoai);
                     cmd.Parameters.AddWithValue("@PK_iLichchieu", PK_iPhongchieuID);
+                    SqlDataReader rd = cmd.ExecuteReader();
+                    if (rd.HasRows)
+                    {
+                        while (rd.Read())
+                        {
+                            HoadonEntity hoadonEntity = new HoadonEntity();
+                            hoadonEntity.FK_iPhongchieuID = Convert.ToInt32(rd["FK_iPhongchieuID"]);
+                            hoadonEntity.sThoiluong = Convert.ToString(rd["sThoiluong"]);
+                            hoadonEntity.sTenphim = Convert.ToString(rd["sTenphim"]);
+                            hoadonEntity.tNgaybatdau = Convert.ToDateTime(rd["tNgaybatdau"]);
+                            hoadonEntity.hGiochieu = Convert.ToString(rd["hGiochieu"]);
+                            hoadonEntity.FK_iGheID = Convert.ToInt32(rd["FK_iGheID"]);
+                            lst_Ve.Add(hoadonEntity);
+                        }
+                    }
+                }
+                cnn.Close();
+                return lst_Ve;
+            }
+        }
+        public List<HoadonEntity> getAllHoadon (string sSoDienThoai)
+        {
+            List<HoadonEntity> lst_Ve = new List<HoadonEntity>();
+            using (SqlConnection cnn = new SqlConnection(GetconnectString()))
+            {
+                cnn.Open();
+                using (SqlCommand cmd = new SqlCommand("sptblHoadon_getAll", cnn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@PK_NguoidungID", sSoDienThoai);
                     SqlDataReader rd = cmd.ExecuteReader();
                     if (rd.HasRows)
                     {
