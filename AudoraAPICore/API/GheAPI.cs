@@ -21,14 +21,19 @@ namespace AudoraAPICore.API
             lstGhe = GheDAL.Hienthidanhsachghetheongaygio(giochieu, ngaychieu, FK_iPhongchieuID);
             return lstGhe;
         }
-        [HttpGet("bookSticker")]
-        public List<HoadonEntity> bookSticker(/*int FK_iPhimID,*/int PK_Ghe, string sSoDienThoai, int PK_iPhongchieuID)
+        [HttpGet("getghebyphongchieu")]
+        public IEnumerable<GheEntity> getghebyphongchieu(int FK_iPhongchieuID)
         {
-
-            List<HoadonEntity> lstHoadon;
+            IEnumerable<GheEntity> lstGhe;
             GheDAL GheDAL = new GheDAL();
-            lstHoadon = GheDAL.DatVe(/*FK_iPhimID,*/PK_Ghe, sSoDienThoai, PK_iPhongchieuID);
-            return lstHoadon;
+            lstGhe = GheDAL.Hienthidanhsachghetheophongchieu( FK_iPhongchieuID);
+            return lstGhe;
+        }
+        [HttpGet("bookSticker")]
+        public bool bookSticker(/*int FK_iPhimID,*/int PK_Ghe, string sSoDienThoai, int PK_iPhongchieuID)
+        {
+            GheDAL GheDAL = new GheDAL();
+            return GheDAL.DatVe(/*FK_iPhimID,*/PK_Ghe, sSoDienThoai, PK_iPhongchieuID);
         }
         [HttpGet("GetAllHD")]
         public List<HoadonEntity> GetAllHD( string sSoDienThoai)
