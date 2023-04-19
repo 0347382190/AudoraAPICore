@@ -64,7 +64,7 @@ namespace AudoraAPICore.DAL
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@sTenphim", phimEntity.sTenphim);
                     cmd.Parameters.AddWithValue("@sThoiluong", phimEntity.sThoiluong);
-                    cmd.Parameters.AddWithValue("@dNgaykhoichieu", phimEntity.dNgaykhoichieu);
+                    cmd.Parameters.AddWithValue("@dNgaykhoichieu",phimEntity.dNgaykhoichieu);
                     cmd.Parameters.AddWithValue("@sDaodien", phimEntity.sDaodien);
                     cmd.Parameters.AddWithValue("@sDienvien", phimEntity.sDienvien);
                     cmd.Parameters.AddWithValue("@sMota", phimEntity.sMota);
@@ -184,6 +184,40 @@ namespace AudoraAPICore.DAL
                 }
                 cnn.Close();
                 return phimEntity;
+            }
+        }
+        public List<PhimEntity> Timkiemphimtheoten(String sTenphim)
+        {
+            using (SqlConnection cnn = new SqlConnection(GetconnectString()))
+            {
+                //PhimEntity phimEntity = new PhimEntity();
+                List<PhimEntity> glstPhim = new List<PhimEntity>();
+                cnn.Open();
+                using (SqlCommand cmd = new SqlCommand("spPhim_Search", cnn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@sTenphim", sTenphim);
+                    SqlDataReader rd = cmd.ExecuteReader();
+                    if (rd.HasRows)
+                    {
+                        while (rd.Read())
+                        {
+                            PhimEntity phimEntity = new PhimEntity();
+                            phimEntity.PK_iPhimID = Convert.ToInt32(rd["PK_iPhimID"]);
+                            phimEntity.sTenphim = rd["sTenphim"].ToString();
+                            phimEntity.sThoiluong = rd["sThoiluong"].ToString();
+                            phimEntity.dNgaykhoichieu = Convert.ToDateTime(rd["dNgaykhoichieu"]);
+                            phimEntity.sDaodien = rd["sDaodien"].ToString();
+                            phimEntity.sDienvien = rd["sDienvien"].ToString();
+                            phimEntity.sMota = rd["sMota"].ToString();
+                            phimEntity.sNgonngu = rd["sNgonngu"].ToString();
+                            phimEntity.sAnh = rd["sAnh"].ToString();
+                            glstPhim.Add(phimEntity);
+                        }
+                    }
+                }
+                cnn.Close();
+                return glstPhim;
             }
         }
     }

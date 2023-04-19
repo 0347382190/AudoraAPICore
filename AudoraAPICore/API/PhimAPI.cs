@@ -40,8 +40,14 @@ namespace AudoraAPICore.API
         public PhimEntity GetPhimbyID(long PK_iPhimID)
         {
             PhimDAL phimDAL = new PhimDAL();
-            //return "";
             return phimDAL.TimkiemphimtheoID(PK_iPhimID);
+        }
+
+        [HttpGet("GetByName")]
+        public List<PhimEntity> GetPhimbyName(string sTenphim)
+        {
+            PhimDAL phimDAL = new PhimDAL();
+            return phimDAL.Timkiemphimtheoten(sTenphim);
         }
         // POST api/<PhimAPI>
         [HttpPost]
