@@ -39,11 +39,9 @@ namespace AudoraAPICore.API
             string password = usernamePassword[1];
 
             // Kiểm tra tên đăng nhập và mật khẩu trong cơ sở dữ liệu hoặc các phương tiện lưu trữ khác
-            bool isAuthenticated = taikhoanDAL.LoginTaikhoan(username, password)!=null?true:false;
-            if (isAuthenticated == true)
-            {
-                 return username;
-            }
+            string isAuthenticated = taikhoanDAL.LoginTaikhoan(username, password);
+            if (isAuthenticated !="")
+            return isAuthenticated;
             return "sai rồi";
         }
     }
